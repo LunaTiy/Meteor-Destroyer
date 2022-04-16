@@ -6,8 +6,9 @@ using UnityEngine.Events;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 1f;
+	[SerializeField] private GameObject _prefabExplosion;
 
-	[SerializeField] private GameManager _gameManager;
+	private GameManager _gameManager;
 	private Rigidbody2D _rb;
 
 	private void Start()
@@ -22,8 +23,12 @@ public class Bullet : MonoBehaviour
 	{
 		if(collision.gameObject.tag == "Enemy")
 		{
+			GameObject explosion = Instantiate(_prefabExplosion, transform.position, Quaternion.identity);
+			explosion.GetComponent<ParticleSystem>().Play();
+
 			Destroy(collision.gameObject);
 			_gameManager.AddScore();
+
 			Destroy(gameObject);
 		}
 	}
