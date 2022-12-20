@@ -60,7 +60,7 @@ TextureImporter:
       213: -1455147827554609819
     second: Meteor_18
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -81,6 +81,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -119,6 +120,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -158,6 +160,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -580,6 +594,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Meteor_13: 1898558436884513722
+      Meteor_15: -7430752092923798014
+      Meteor_12: 5977774766118875638
+      Meteor_16: -4207796425570954169
+      Meteor_1: -2967113423327029113
+      Meteor_11: 3886601761637924978
+      Meteor_6: 5445079194408841022
+      Meteor_4: 3200402534045966826
+      Meteor_8: -567002566789757220
+      Meteor_3: -6744407381781148267
+      Meteor_17: -4694829378375585035
+      Meteor_0: 8961090413319157468
+      Meteor_10: 1652754750139051638
+      Meteor_18: -1455147827554609819
+      Meteor_14: -1122062046909545809
+      Meteor_5: 8672831667117538069
+      Meteor_7: -4901647584913057192
+      Meteor_9: -1223141344696761195
+      Meteor_2: 2182055113893026377
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
