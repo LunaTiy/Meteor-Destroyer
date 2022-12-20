@@ -4,21 +4,21 @@ using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
-	[SerializeField] private UnityEvent _eventGameOver;
-	[SerializeField] private GameObject _bulletPrefab;
+	[SerializeField] protected UnityEvent _eventGameOver;
+	[SerializeField] protected GameObject _bulletPrefab;
 
-    [SerializeField] private float _speed;
-	[SerializeField] private float _reloadTime;
+    [SerializeField] protected float _speed;
+	[SerializeField] protected float _reloadTime;
+
+	protected float _elapsedTime;
 
 	private Vector3 _spawnShipPosition;
-
-	private float _elapsedTime;
 	private Vector3 _spawnBulletPosition;
 
 	private float _limitCameraSizeX;
 	private float _limitCameraSizeY;
 
-	private void Start()
+	protected void Start()
 	{
 		if (Camera.main == null)
 			throw new NullReferenceException();
@@ -33,18 +33,18 @@ public class ShipController : MonoBehaviour
 		_spawnShipPosition = transform.position;
 	}
 
-	private void Update()
+	protected void Update()
 	{
 		Movement();
 		Fire();
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
+	protected void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.CompareTag("Enemy")) _eventGameOver.Invoke();
 	}
 
-	private void Movement()
+	protected virtual void Movement()
 	{
 		float mX = Input.GetAxis("Horizontal") * _speed;
 		float mY = Input.GetAxis("Vertical") * _speed;
@@ -56,20 +56,18 @@ public class ShipController : MonoBehaviour
 		ClampPosition();
 	}
 
-	private void Fire()
+	protected virtual void Fire()
 	{
 		_elapsedTime += Time.deltaTime;
 
-		if (Input.GetButtonDown("Jump") && _elapsedTime >= _reloadTime)
-		{
-			Vector3 spawnBulletPosition = transform.position - new Vector3(0, transform.localScale.y, 0);
+		if (!Input.GetButtonDown("Jump") || !(_elapsedTime >= _reloadTime)) return;
+		Vector3 spawnBulletPosition = transform.position - new Vector3(0, transform.localScale.y, 0);
 
-			Instantiate(_bulletPrefab, spawnBulletPosition, Quaternion.identity);
-			_elapsedTime = 0f;
-		}
+		Instantiate(_bulletPrefab, spawnBulletPosition, Quaternion.identity);
+		_elapsedTime = 0f;
 	}
 
-	private void ClampPosition()
+	protected void ClampPosition()
 	{
 		Vector3 position = transform.position;
 		position.x = Mathf.Clamp(position.x, -_limitCameraSizeX, _limitCameraSizeX);
@@ -78,7 +76,7 @@ public class ShipController : MonoBehaviour
 		transform.position = position;
 	}
 
-	public void ResetShipPosition()
+	protected void ResetShipPosition()
 	{
 		transform.position = _spawnShipPosition;
 	}
