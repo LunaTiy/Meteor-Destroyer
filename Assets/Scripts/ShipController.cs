@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
-	[SerializeField] private UnityEvent EventGameOver;
+	[SerializeField] private UnityEvent _eventGameOver;
 	[SerializeField] private GameObject _bulletPrefab;
 
     [SerializeField] private float _speed;
@@ -21,9 +20,16 @@ public class ShipController : MonoBehaviour
 
 	private void Start()
 	{
-		_limitCameraSizeX = Camera.main.orthographicSize + transform.localScale.x / 2;
-		_limitCameraSizeY = Camera.main.orthographicSize + transform.localScale.y;
+		if (Camera.main == null)
+			throw new NullReferenceException();
 
+		float orthographicSize = Camera.main.orthographicSize;
+		Vector3 localScale = transform.localScale;
+		
+		_limitCameraSizeX = orthographicSize + localScale.x / 2;
+		_limitCameraSizeY = orthographicSize + localScale.y;
+
+		// ReSharper disable once Unity.InefficientPropertyAccess
 		_spawnShipPosition = transform.position;
 	}
 
@@ -35,7 +41,7 @@ public class ShipController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Enemy") EventGameOver.Invoke();
+		if (other.CompareTag("Enemy")) _eventGameOver.Invoke();
 	}
 
 	private void Movement()
@@ -43,7 +49,7 @@ public class ShipController : MonoBehaviour
 		float mX = Input.GetAxis("Horizontal") * _speed;
 		float mY = Input.GetAxis("Vertical") * _speed;
 
-		Vector2 movement = new Vector2(mX, mY);
+		var movement = new Vector2(mX, mY);
 
 		transform.Translate(movement * Time.deltaTime);
 
