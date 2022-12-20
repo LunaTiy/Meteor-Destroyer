@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 808795895}
   - component: {fileID: 808795894}
   - component: {fileID: 808795897}
+  - component: {fileID: 808795899}
   - component: {fileID: 808795898}
   m_Layer: 0
   m_Name: Ship
@@ -762,6 +763,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6f2542139c40d89e72031e31a6c3ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventGameOver:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1182240215}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _bulletPrefab: {fileID: 3031232612802994789, guid: 248a341ffb27e3b44a9108a18fa941cf, type: 3}
+  _speed: 8
+  _reloadTime: 0.4
+--- !u!114 &808795899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808795893}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b259a6a26885e44974a945fc8952c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _eventGameOver:
